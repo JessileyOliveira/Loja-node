@@ -12,5 +12,15 @@ module.exports = function(app){
         });
     }
 
+    controller.insert = (req, res, next) => {
+        var body = req.body;
+        produto.create(body, (err, data) => {
+            if (err) {
+                return  res.status(500).json({ error: true, data: err });
+            }
+            return  res.status(201).json({ error: false, data: data });
+        });
+    };
+
     return controller;
 }

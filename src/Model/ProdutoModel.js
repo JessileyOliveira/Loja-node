@@ -14,7 +14,9 @@ module.exports = function(){
             required: true
         },
 
-        imagens:[String],
+        imagens:{
+            type:[String]
+        },
         
         caracteristicas:[{
             titulo:{
