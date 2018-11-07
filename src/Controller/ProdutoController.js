@@ -3,7 +3,14 @@ module.exports = function(app){
     var controller = {};
     var produto = app.Model.ProdutoModel;
 
-    controller.getProdutos = function(req, res, next){ console.log("teste"); return res.send("teste")}
+    controller.getProdutos = function(req, res, next){ 
+        produto.find({}, (err, data) => {
+            if (err) {
+                return  res.status(500).json({ error: true, data: err });
+            }
+            return  res.status(201).json({ error: false, data: data });
+        });
+    }
 
     return controller;
 }
