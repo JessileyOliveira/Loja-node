@@ -8,6 +8,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 const consign = require('consign');
 
+mongoose.connect("mongodb://localhost/loja", {useNewUrlParser: true})
+
 const consignProperties = {
   cwd: "src",
   locale: 'pt-br',
