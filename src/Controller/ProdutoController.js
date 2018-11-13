@@ -3,7 +3,7 @@ module.exports = function(app){
     var controller = {};
     var produto = app.Model.ProdutoModel;
 
-    controller.getAll = function(req, res, next){ 
+    controller.getAll = function(req, res){ 
         produto.find({}, (err, data) => {
             if (err) {
                 return  res.status(500).json({ error: true, data: err });
@@ -12,7 +12,7 @@ module.exports = function(app){
         });
     }
 
-    controller.getById = function(req, res, next){ 
+    controller.getById = function(req, res){ 
         var id = req.params.id;
         produto.findOne({_id: id}, (err, data) => {
             if (err) {
@@ -22,7 +22,7 @@ module.exports = function(app){
         });
     }
 
-    controller.getByCodigo = function(req, res, next){ 
+    controller.getByCodigo = function(req, res){ 
         var codigo = req.params.codigo;
         produto.findOne({codigo: codigo}, (err, data) => {
             if (err) {
@@ -32,7 +32,7 @@ module.exports = function(app){
         });
     }
 
-    controller.insert = (req, res, next) => {
+    controller.insert = (req, res) => {
         var body = req.body;
         produto.create(body, (err, data) => {
             if (err) {
@@ -42,10 +42,20 @@ module.exports = function(app){
         });
     };
 
-    controller.update = (req, res, next) => {
+    controller.update = (req, res) => {
         var body = req.body;
         var id = req.params._id;
-        produto.update({_id: id}, body, (err, data) => {
+        produto.updateOne({_id: id}, body, (err, data) => {
+            if (err) {
+                return  res.status(500).json({ error: true, data: err });
+            }
+            return  res.status(201).json({ error: false, data: data });
+        });
+    };
+
+    controller.inative = (req, res) => {
+        var id = req.params._id;
+        produto.updateOne({_id: id}, { $set: { status: false} }, (err, data) => {
             if (err) {
                 return  res.status(500).json({ error: true, data: err });
             }

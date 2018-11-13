@@ -7,5 +7,6 @@ app.get('/produto/getById/:id', controller.getById);
 app.get('/produto/getByCodigo/:codigo', controller.getByCodigo);
 app.post('/produto/insert', controller.insert);
 app.put('/produto/update/:_id', controller.update);
+app.put('/produto/inative/:_id', controller.inative);
 
 }
