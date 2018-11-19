@@ -82,13 +82,12 @@ module.exports = function(){
                 type: Number,
                 required: true,
                 default: 1
-            }
-            // ,
+            },
 
-            // estoque:{
-            //     type: Schema.Types.ObjectId,
-            //     ref: 'Estoque'
-            // }
+            estoque:{
+                type: Schema.Types.ObjectId,
+                ref: 'Estoque'
+            }
 
         }]
 

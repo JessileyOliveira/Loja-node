@@ -41,7 +41,8 @@ module.exports = function(){
 
         precoPromocional:{
             type: Number,
-            required: false
+            required: false,
+            default: 0.0
         },
 
         promocao:{
